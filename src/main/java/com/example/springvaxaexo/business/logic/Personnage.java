@@ -10,6 +10,10 @@ public abstract class Personnage {
 
     protected PersonnageInfo data;
 
+    public PersonnageInfo getData() {
+        return data;
+    }
+
     public Personnage() {
 
     }
