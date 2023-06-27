@@ -6,7 +6,7 @@ import com.example.springvaxaexo.business.enums.TypeObjet;
 import java.util.Arrays;
 
 public class Poring extends Personnage {
-    private MonstreInfo dataMonstre;
+    private final MonstreInfo dataMonstre;
 
     public Poring() {
         this(new MonstreInfo(

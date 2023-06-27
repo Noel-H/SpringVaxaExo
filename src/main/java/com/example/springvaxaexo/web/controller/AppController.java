@@ -4,7 +4,7 @@ import com.example.springvaxaexo.business.data.JoueurInfo;
 import com.example.springvaxaexo.business.data.MonstreInfo;
 import com.example.springvaxaexo.business.enums.Job;
 import com.example.springvaxaexo.business.logic.*;
-import com.example.springvaxaexo.web.dto.NewGameResponseDTO;
+import com.example.springvaxaexo.web.dto.GameDataDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 public class AppController {
 
     @GetMapping("/newGame")
-    public NewGameResponseDTO getNewGameWithName(@RequestParam(value = "nomJoueur", required = false) String nomJoueur) {
+    public GameDataDTO getNewGameWithName(@RequestParam(value = "nomJoueur", required = false) String nomJoueur) {
         Joueur joueur = nomJoueur == null ? new Joueur() : new Joueur(nomJoueur);
         Poring poring = new Poring();
-        return new NewGameResponseDTO((JoueurInfo) joueur.getData(), (MonstreInfo) poring.getData());
+        return new GameDataDTO((JoueurInfo) joueur.getData(), (MonstreInfo) poring.getData());
     }
 
     @GetMapping("/newPlayer")
@@ -24,37 +24,36 @@ public class AppController {
         return (JoueurInfo) joueur.getData();
     }
 
-
     @PostMapping("/visiterForet")
-    public NewGameResponseDTO visiterForet(@RequestBody NewGameResponseDTO newGameResponseDTO) {
-        Foret foret = new Foret(newGameResponseDTO.getMonstreDeLaForet());
-        Joueur joueur = new Joueur(newGameResponseDTO.getJoueur());
+    public GameDataDTO visiterForet(@RequestBody GameDataDTO gameDataDTO) {
+        Foret foret = new Foret(gameDataDTO.getMonstreDeLaForet());
+        Joueur joueur = new Joueur(gameDataDTO.getJoueur());
         foret.visiter(joueur);
-        return new NewGameResponseDTO((JoueurInfo) joueur.getData(), (MonstreInfo) foret.getPoring().getData());
+        return new GameDataDTO((JoueurInfo) joueur.getData(), (MonstreInfo) foret.getPoring().getData());
     }
 
     @PostMapping("/vendreGary")
-    public NewGameResponseDTO vendreGary(@RequestBody NewGameResponseDTO newGameResponseDTO) {
+    public GameDataDTO vendreGary(@RequestBody GameDataDTO gameDataDTO) {
         Gary gary = new Gary();
-        Joueur joueur = new Joueur(newGameResponseDTO.getJoueur());
+        Joueur joueur = new Joueur(gameDataDTO.getJoueur());
         gary.vendreTout(joueur);
-        return new NewGameResponseDTO((JoueurInfo) joueur.getData(), newGameResponseDTO.getMonstreDeLaForet());
+        return new GameDataDTO((JoueurInfo) joueur.getData(), gameDataDTO.getMonstreDeLaForet());
     }
 
     @PostMapping("/voirSoigneur")
-    public NewGameResponseDTO voirSoigneur(@RequestBody NewGameResponseDTO newGameResponseDTO) {
+    public GameDataDTO voirSoigneur(@RequestBody GameDataDTO gameDataDTO) {
         Soigneur soigneur = new Soigneur();
-        Joueur joueur = new Joueur(newGameResponseDTO.getJoueur());
+        Joueur joueur = new Joueur(gameDataDTO.getJoueur());
         soigneur.soigner(joueur);
-        return new NewGameResponseDTO((JoueurInfo) joueur.getData(), newGameResponseDTO.getMonstreDeLaForet());
+        return new GameDataDTO((JoueurInfo) joueur.getData(), gameDataDTO.getMonstreDeLaForet());
     }
 
     @PostMapping("/changerJob")
-    public NewGameResponseDTO changerJob(@RequestBody NewGameResponseDTO newGameResponseDTO,
-                                         @RequestParam("job") Job job) {
-        Joueur joueur = new Joueur(newGameResponseDTO.getJoueur());
+    public GameDataDTO changerJob(@RequestBody GameDataDTO gameDataDTO,
+                                  @RequestParam("job") Job job) {
+        Joueur joueur = new Joueur(gameDataDTO.getJoueur());
         JobChanger jobChanger = new JobChanger();
         jobChanger.promotion(joueur, job);
-        return new NewGameResponseDTO((JoueurInfo) joueur.getData(), newGameResponseDTO.getMonstreDeLaForet());
+        return new GameDataDTO((JoueurInfo) joueur.getData(), gameDataDTO.getMonstreDeLaForet());
     }
 }

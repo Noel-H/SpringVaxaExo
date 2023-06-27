@@ -3,16 +3,16 @@ package com.example.springvaxaexo.web.dto;
 import com.example.springvaxaexo.business.data.JoueurInfo;
 import com.example.springvaxaexo.business.data.MonstreInfo;
 
-public class NewGameResponseDTO {
+public class GameDataDTO {
 
     private JoueurInfo joueur;
     private MonstreInfo monstreDeLaForet;
 
-    public NewGameResponseDTO(JoueurInfo joueur) {
+    public GameDataDTO(JoueurInfo joueur) {
         this.joueur = joueur;
     }
 
-    public NewGameResponseDTO(JoueurInfo joueur, MonstreInfo monstreDeLaForet) {
+    public GameDataDTO(JoueurInfo joueur, MonstreInfo monstreDeLaForet) {
         this.joueur = joueur;
         this.monstreDeLaForet = monstreDeLaForet;
     }

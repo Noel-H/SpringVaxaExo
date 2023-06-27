@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Joueur extends Personnage {
-    private JoueurInfo dataJoueur;
+    private final JoueurInfo dataJoueur;
 
     public Joueur() {
         this("Newbie");
