@@ -10,16 +10,20 @@ public abstract class Personnage {
 
     protected PersonnageInfo data;
 
-    public PersonnageInfo getData() {
-        return data;
-    }
-
     public Personnage() {
 
     }
 
     public Personnage(PersonnageInfo personnageInfo) {
         this.data = personnageInfo;
+    }
+
+    public PersonnageInfo getData() {
+        return data;
+    }
+
+    public void setData(PersonnageInfo data) {
+        this.data = data;
     }
 
     public String getNom() {

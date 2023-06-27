@@ -1,10 +1,20 @@
 package com.example.springvaxaexo.business.logic;
 
+import com.example.springvaxaexo.business.data.MonstreInfo;
+
 public class Foret {
     private Poring poring;
 
-    Foret() {
+    public Foret() {
         this.poring = new Poring();
+    }
+
+    public Foret(MonstreInfo monstreInfo) {
+        this.poring = new Poring(monstreInfo);
+    }
+
+    public Poring getPoring() {
+        return poring;
     }
 
     public void visiter(Personnage personnage) {

@@ -17,8 +17,7 @@ public class Joueur extends Personnage {
     }
 
     public Joueur(String nom) {
-        super();
-        this.data = new JoueurInfo(
+        this(new JoueurInfo(
                 nom,
                 Job.NOVICE.basePvMax,
                 Job.NOVICE.basePvMax,
@@ -31,7 +30,11 @@ public class Joueur extends Personnage {
                 0,
                 1,
                 Job.NOVICE,
-                0);
+                0));
+    }
+
+    public Joueur(JoueurInfo joueurInfo) {
+        this.data = joueurInfo;
         this.dataJoueur = (JoueurInfo) this.data;
         System.out.println("Création de " + this.dataJoueur.getNom());
     }
